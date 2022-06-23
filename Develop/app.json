@@ -1,0 +1,6 @@
+{
+    "name": "Note Taker",
+    "description": "Express note taker",
+    "repository": "https://github.com/selaprivette/NotesTaker",
+    "keywords": ["node", "express", "notes"]
+}
