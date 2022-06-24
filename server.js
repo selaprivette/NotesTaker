@@ -29,12 +29,16 @@ app.get("/api/notes", (req, res) => {
 //     res.send();
 // });
 
-//adding the POST /api/notes route for the db.json file contents
-// app.post("/api/notes", (req, res) => {
-// 	const newNote
-// 	saveNote(newNote);
-//     res.send(newNote);
-// });
+// adding the POST /api/notes route for the db.json file contents
+app.post("/api/notes", (req, res) => {
+    console.log(req.body);
+	const newNote = req.body;
+    newNote.id = new Date().valueOf();
+	const notes = readJSON();
+    notes.push(newNote);
+    saveNotes(notes);
+    res.send(newNote);
+});
 
 //adding the GET * route for index.html
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "./public/index.html")));
@@ -50,4 +54,9 @@ const readJSON = () => {
     } else { 
         return []
      };
+};
+const saveNotes = (notes) => {
+    fs.writeFile("./db/db.json", JSON.stringify(notes), (err) => {
+        if (err) console.log(err);
+    });
 };
