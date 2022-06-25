@@ -48,7 +48,7 @@ app.post("/api/notes", (req, res) => {
 
 //adding the GET * route for index.html
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "./public/index.html")));
-
+//runs 
 app.listen(PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
 );
@@ -61,8 +61,11 @@ const loadNotes = () => {
         return []
      };
 };
+//delete note function 
 const deleteNote = (id) => {
+    //deletes notes from json 
     const notes = loadNotes();
+    //delete note by id
     for (let i = 0; i < notes.length; i++) {
         if (notes[i].id == id) {
             notes.splice(i, 1);
@@ -70,7 +73,9 @@ const deleteNote = (id) => {
     }
     saveNotes(notes);
 }
+//save notes 
 const saveNotes = (notes) => {
+    //notes to json file
     fs.writeFile("./db/db.json", JSON.stringify(notes), (err) => {
         if (err) console.log(err);
     });
